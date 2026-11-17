@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signal Flags — Learn A to Z</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header no-print">
+    <div class="wrap header-inner">
+      <div>
+        <p class="eyebrow">International Code of Signals</p>
+        <h1>Signal Flags</h1>
+        <p class="tagline">Learn the sailor alphabet from Alfa to Zulu.</p>
+      </div>
+      <p class="header-mark" aria-hidden="true">A–Z</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel chart-panel no-print" aria-labelledby="chart-title">
+      <div class="panel-head">
+        <h2 id="chart-title">Choose flags to spell a name</h2>
+        <p>Choose the flags in order. Your spelling will appear below.</p>
+      </div>
+      <div class="spelling-builder">
+        <div class="spelling-preview">
+          <span class="spelling-label">Your spelling</span>
+          <output id="spelling-output" class="spelling-output" aria-live="polite">No letters selected yet</output>
+        </div>
+        <div class="spelling-actions">
+          <button type="button" id="undo-selection" class="btn btn-ghost" disabled>Undo last</button>
+          <button type="button" id="clear-selection" class="btn btn-ghost" disabled>Clear</button>
+          <button type="button" id="print" class="btn btn-print">PRINT MY FLAGS</button>
+        </div>
+      </div>
+      <div id="chart" class="chart-grid"></div>
+    </section>
+  </main>
+
+  <section class="print-sheet" id="print-sheet" aria-hidden="true"></section>
+
+  <script src="script.js"></script>
+</body>
+</html>
