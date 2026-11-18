@@ -73,9 +73,13 @@ function renderChart() {
 }
 
 function updateSpelling() {
-  spellingEl.textContent = selectedLetters.length
-    ? selectedLetters.join(" ")
-    : "No letters selected yet";
+  if (selectedLetters.length) {
+    spellingEl.textContent = selectedLetters.join(" ");
+    spellingEl.classList.add("is-active");
+  } else {
+    spellingEl.textContent = "No letters selected yet";
+    spellingEl.classList.remove("is-active");
+  }
   undoEl.disabled = selectedLetters.length === 0;
   clearEl.disabled = selectedLetters.length === 0;
 
