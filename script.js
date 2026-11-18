@@ -34,6 +34,8 @@ const printEl = document.getElementById("print-sheet");
 const spellingEl = document.getElementById("spelling-output");
 const undoEl = document.getElementById("undo-selection");
 const clearEl = document.getElementById("clear-selection");
+const enterEl = document.getElementById("enter");
+const resultDialogEl = document.getElementById("result-dialog");
 const selectedLetters = [];
 
 function flagUrl(file) {
@@ -105,17 +107,23 @@ function renderPrintSheet() {
     : "International Code of Signals · A to Z";
   const printedName = selectedLetters.length
     ? selectedLetters.join("")
-    : "____________________";
+    : "A–Z";
+  const resultNameClass = selectedLetters.length > 9
+    ? "result-name is-long"
+    : "result-name";
   const currentDate = new Date().toLocaleDateString();
 
   const header = document.createElement("div");
   header.className = "print-header";
   header.innerHTML =
-    "<div><h1>My Signal Flags</h1><p>" + subtitle + "</p></div>" +
-    '<div class="print-meta"><span>Name - ' + printedName + "</span><span>Date - " + currentDate + "</span></div>";
+    '<div><h1 id="result-title">My Signal Flags</h1><p>' + subtitle + "</p></div>" +
+    '<div class="print-meta"><span class="' + resultNameClass + '">' + printedName + "</span><span>Date - " + currentDate + "</span></div>";
 
   const grid = document.createElement("div");
   grid.className = "print-grid";
+  const columns = Math.min(flagsToPrint.length, 9, Math.max(2, Math.floor(window.innerWidth / 180)));
+  grid.style.setProperty("--result-columns", columns);
+  grid.style.setProperty("--result-rows", Math.ceil(flagsToPrint.length / columns));
 
   flagsToPrint.forEach((flag) => {
     const card = document.createElement("article");
@@ -141,9 +149,17 @@ clearEl.addEventListener("click", () => {
   selectedLetters.length = 0;
   updateSpelling();
 });
-document.getElementById("print").addEventListener("click", () => {
+enterEl.addEventListener("click", () => {
   renderPrintSheet();
-  window.print();
+  resultDialogEl.showModal();
+});
+document.getElementById("close-result").addEventListener("click", () => {
+  resultDialogEl.close();
+});
+resultDialogEl.addEventListener("click", (event) => {
+  if (event.target === resultDialogEl) {
+    resultDialogEl.close();
+  }
 });
 
 renderChart();

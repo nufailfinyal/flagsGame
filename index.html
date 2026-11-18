@@ -35,14 +35,17 @@
         <div class="spelling-actions">
           <button type="button" id="undo-selection" class="btn btn-ghost" disabled>Undo last</button>
           <button type="button" id="clear-selection" class="btn btn-ghost" disabled>Clear</button>
-          <button type="button" id="print" class="btn btn-print">PRINT MY FLAGS</button>
+          <button type="button" id="enter" class="btn btn-print">ENTER</button>
         </div>
       </div>
       <div id="chart" class="chart-grid"></div>
     </section>
   </main>
 
-  <section class="print-sheet" id="print-sheet" aria-hidden="true"></section>
+  <dialog class="result-dialog" id="result-dialog">
+    <button type="button" id="close-result" class="btn btn-ghost result-close">Close</button>
+    <section class="print-sheet" id="print-sheet"></section>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
